@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iris Dataset Visualizations</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f7f7;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+    canvas {
+      max-width: 700px;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Iris Dataset Visualizations</h1>
+
+  <h2>1. Species Count (Bar Chart)</h2>
+  <canvas id="speciesCountChart"></canvas>
+
+  <h2>2. Sepal Length vs Sepal Width (Scatter Plot)</h2>
+  <canvas id="sepalScatterChart"></canvas>
+
+  <script>
+    // Species Count
+    const speciesCountChart = new Chart(document.getElementById('speciesCountChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Setosa', 'Versicolor', 'Virginica'],
+        datasets: [{
+          label: 'Number of Samples',
+          data: [50, 50, 50],
+          backgroundColor: ['#FF6384', '#36A2EB', '#4BC0C0']
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // Sepal Scatter Plot (using sample values)
+    const sepalData = {
+      Setosa: [
+        {x: 5.1, y: 3.5}, {x: 4.9, y: 3.0}, {x: 4.7, y: 3.2}, {x: 4.6, y: 3.1},
+      ],
+      Versicolor: [
+        {x: 7.0, y: 3.2}, {x: 6.4, y: 3.2}, {x: 6.9, y: 3.1}, {x: 5.5, y: 2.3},
+      ],
+      Virginica: [
+        {x: 6.3, y: 3.3}, {x: 5.8, y: 2.7}, {x: 7.1, y: 3.0}, {x: 6.3, y: 2.9},
+      ]
+    };
+
+    const sepalScatterChart = new Chart(document.getElementById('sepalScatterChart'), {
+      type: 'scatter',
+      data: {
+        datasets: [
+          {
+            label: 'Setosa',
+            data: sepalData.Setosa,
+            backgroundColor: '#FF6384'
+          },
+          {
+            label: 'Versicolor',
+            data: sepalData.Versicolor,
+            backgroundColor: '#36A2EB'
+          },
+          {
+            label: 'Virginica',
+            data: sepalData.Virginica,
+            backgroundColor: '#4BC0C0'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Sepal Length (cm)'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Sepal Width (cm)'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
